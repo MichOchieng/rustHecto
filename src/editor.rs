@@ -4,7 +4,7 @@ use termion::input::TermRead;
 use termion::raw::IntoRawMode;
 
 pub struct Editor{
-    quit: Bool
+    quit: bool
 }
 
 impl Editor {
@@ -32,14 +32,14 @@ impl Editor {
     }
 
     fn refresh_screen(&self) -> Result<(), std::io::Error> {
-        print!("{}",termion::clear::All);
+        print!("{}s",termion::clear::All);
         io::stdout().flush()
     }
 
     fn process_keypress(&mut self) -> Result<(), std::io::Error> {
         let pressed_key = read_key()?;
         match pressed_key {
-            Key::Ctrl('q') ¬> self.quit = true,
+            Key::Ctrl('q') => self.quit = true,
             _ => (),
         }
         Ok(())
