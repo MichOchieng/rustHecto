@@ -21,7 +21,7 @@ impl Terminal {
                 width: size.0,
                 height: size.1,
             },
-            _stdout: stdout().into_raw_mode()?;
+            _stdout: stdout().into_raw_mode()?,
         })
     }
     pub fn size(&self) -> &Size {
@@ -33,6 +33,7 @@ impl Terminal {
     }
 
     pub fn cursor_postion(x: u16, y: u16) {
+        // Avoids overflow
         let x = x.saturating_add(1);
         let y = y.saturating_add(1);
         print!("{}", termion::cursor::Goto(x,y));

@@ -25,8 +25,8 @@ impl Editor {
 
     pub fn default() -> Self {
         Self{
-            quit: false
-            temrinal: Terminal::default().expect("Failed to init terminal!").
+            quit: false,
+            terminal: Terminal::default().expect("Failed to init terminal!"),
         }
     }
 
@@ -38,13 +38,13 @@ impl Editor {
         }
         else {
             self.draw_rows();
-            Termianl::cursor_postion(0,0);
+            Terminal::cursor_postion(0,0);
         }
         Terminal::flush()
     }
 
     fn draw_rows(&self) {
-        for _ in 0..self.terminal.size().height{
+        for _ in 0..self.terminal.size().height - 1{
             println!("~\r");
         }
     }
