@@ -32,7 +32,10 @@ impl Editor {
     }
 
     fn refresh_screen(&self) -> Result<(), std::io::Error> {
-        print!("{}s",termion::clear::All);
+        print!("{}{}",termion::clear::All, termion::cursor::Goto(1,1)); // Reset cursor
+        if self.quit{
+            println!("Cya!\r");
+        }
         io::stdout().flush()
     }
 
@@ -55,5 +58,6 @@ fn read_key() -> Result<Key, std::io::Error> {
 }
 // Error handling: prints error and exits program
 fn die(e: std::io::Error) {
-    panic!("{}",e)
+    println!("{}", termion::clear::All);
+    panic!("{}",e);
 }
