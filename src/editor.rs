@@ -27,6 +27,10 @@ impl Editor {
                }
             }
     }
+
+    pub fn default() -> Self {
+        Self{}
+    }
 }
 // Error handling: prints error and exits program
 fn die(e: std::io::Error) {
